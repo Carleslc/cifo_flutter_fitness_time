@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
               getActivityCard(activity),
             const SizedBox(height: 30),
             // Objectiu
-            const Center(
+            Center(
               child: GoalProgressIndicator(
                 name: 'Objectiu mensual',
                 percent: 65 / 100,

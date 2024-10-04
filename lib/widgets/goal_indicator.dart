@@ -13,20 +13,22 @@ class GoalProgressIndicator extends StatelessWidget {
   final String name;
 
   /// Progrés actual de l'objectiu, p.e. 65 / 100
-  final double percent;
+  late final double percent;
 
   /// Mida de l'indicador
   final double radius;
 
-  const GoalProgressIndicator({
+  GoalProgressIndicator({
     super.key,
     required this.name,
-    required this.percent,
-    this.radius = 50,
-  });
+    required double percent,
+    this.radius = 55,
+  }) {
+    this.percent = clampDouble(percent, 0, 1); // ajusta al rang [0,1]
+  }
 
   /// Percentatge del progrés entre 0 i 100
-  double get progress => 100 * clampDouble(percent, 0, 1);
+  double get progress => 100 * percent;
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +44,9 @@ class GoalProgressIndicator extends StatelessWidget {
         style: AppStyles.text.titleMedium,
       ),
       footer: Padding(
-        // Disseny: 0
-        // Alternativa: 4, per que el texte quedi millor una mica més separat
-        padding: const EdgeInsets.only(top: 0),
+        // El text al disseny té 0 padding, però s'ha afegit un padding sutil
+        // per que el texte quedi millor una mica més separat
+        padding: const EdgeInsets.only(top: 4),
         child: Text(name, style: AppStyles.text.normal),
       ),
     );
