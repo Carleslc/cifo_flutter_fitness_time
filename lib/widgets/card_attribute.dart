@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../styles/app_styles.dart';
 
+///
+/// Card d'un valor a la pantalla de perfil
+/// (Time, Km, Activities)
+///
 class CardAttribute extends StatelessWidget {
   /// Icona de l'atribut
   final IconData icon;
@@ -21,16 +25,25 @@ class CardAttribute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.secondaryContainer;
+    Color foregroundColor = Theme.of(context).colorScheme.onSecondaryContainer;
+
     return Card(
       elevation: 3,
-      color: AppStyles.color.secondary,
+      color: backgroundColor,
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
-            Icon(icon),
-            Text(name),
-            Text(value, style: AppStyles.text.medium),
+            Icon(icon, color: foregroundColor),
+            Text(
+              name,
+              style: AppStyles.text.normal.copyWith(color: foregroundColor),
+            ),
+            Text(
+              value,
+              style: AppStyles.text.medium.copyWith(color: foregroundColor),
+            ),
           ],
         ),
       ),

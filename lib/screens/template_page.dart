@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../styles/app_styles.dart';
 
+/// Pàgina plantilla (Cercar, Botiga)
 class TemplatePage extends StatelessWidget {
   const TemplatePage({super.key, required this.icon});
 

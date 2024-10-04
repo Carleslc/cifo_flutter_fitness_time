@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../utils/number_utils.dart';
 
+///
+/// Slider d'un valor a la pantalla de perfil
+/// (Height, Weight)
+///
 class SliderAttribute extends StatelessWidget {
   /// Nom de l'atribut
   final String name;

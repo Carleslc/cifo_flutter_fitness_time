@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../styles/app_styles.dart';
+
+/// Imatge circular que mostra la imatge de l'usuari
 class UserAvatar extends StatelessWidget {
   const UserAvatar({
     super.key,
@@ -17,6 +20,7 @@ class UserAvatar extends StatelessWidget {
       child: CircleAvatar(
         radius: size,
         backgroundImage: NetworkImage(imageUrl),
+        backgroundColor: AppStyles.color.warning, // si no es troba
       ),
     );
   }

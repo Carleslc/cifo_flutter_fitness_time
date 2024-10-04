@@ -24,8 +24,8 @@ extension CustomDateTimeFormatter on DateTime {
   /// `dd MMM yyyy, HH:mm` 15 Sep 2024, 21:45
   static DateFormat dateTimeFormat = DateFormat('dd MMM yyyy, HH:mm', localeEN);
 
-  /// `yMMMMd` 20 d'abril del 2022
-  static DateFormat dateFormatCA = DateFormat.yMMMMd(localeCA);
+  /// `d MMMM 'del' y` 20 d'abril del 2022
+  static DateFormat dateFormatCA = DateFormat("d MMMM 'del' y", localeCA);
 
   /// Formateig de data i hora
   ///

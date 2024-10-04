@@ -5,6 +5,9 @@ import '../styles/app_styles.dart';
 import '../utils/date_utils.dart';
 import '../utils/number_utils.dart';
 
+///
+/// Card d'una activitat a la pantalla principal
+///
 class ActivityCard extends StatelessWidget {
   /// Activitat esportiva
   final Activity activity;
@@ -25,8 +28,7 @@ class ActivityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: AppStyles.color.background,
-      surfaceTintColor: AppStyles.color.secondary,
+      surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Row(

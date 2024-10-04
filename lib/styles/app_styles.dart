@@ -7,69 +7,48 @@ part 'text_styles.dart';
 /// Estils de l'aplicació
 abstract final class AppStyles {
   /// Plantilla de colors
-  static final color = _ColorStyles();
+  static ColorStyles get color => _color;
+  static late ColorStyles _color;
 
   /// Estils de textos
-  static final text = _TextStyles();
+  static TextStyles get text => _text;
+  static late TextStyles _text;
 
-  /// Tema de l'aplicació
+  /// Inicialitza el tema de l'aplicació
   static ThemeData theme(BuildContext context) {
     final ThemeData defaultTheme = Theme.of(context);
 
-    // Esquema de colors
-    final ColorScheme colorScheme = defaultTheme.colorScheme.copyWith(
-      primary: color.primary,
-      secondary: color.secondary,
-      tertiary: color.tertiary,
-      surface: color.background, // e.g. Scaffold background color
-      inversePrimary: color.accent,
-      inverseSurface: color.dark,
-      onPrimary: color.textColor,
-    );
+    // Inicialitza els colors a partir del context
+    _color = ColorStyles._(defaultTheme.colorScheme);
 
-    // Tema dels textos
-    final TextTheme textTheme = _TextStyles.fontTheme(
-      defaultTheme.textTheme.copyWith(
-        displayLarge: text.title,
-        displayMedium: text.big,
-        displaySmall: text.medium,
-        headlineLarge: text.titleMedium,
-        headlineMedium: text.big,
-        headlineSmall: text.normal,
-        titleLarge: text.big,
-        titleMedium: text.titleMedium,
-        titleSmall: text.medium,
-        bodyLarge: text.medium,
-        bodyMedium: text.normal,
-        bodySmall: text.small,
-        labelLarge: text.medium,
-        labelMedium: text.normal,
-        labelSmall: text.small,
-      ),
-    );
+    // Inicialitza els textos a partir del context
+    _text = TextStyles._(defaultTheme.textTheme);
 
+    // Inicialitza el tema
     return ThemeData.from(
       useMaterial3: true,
-      textTheme: textTheme,
-      colorScheme: colorScheme,
+      colorScheme: color.scheme,
+      textTheme: text.theme,
     ).copyWith(
       // Altres temes dels widgets de l'aplicació
       appBarTheme: AppBarTheme(
-        foregroundColor: color.white,
-        backgroundColor: color.primary,
-        titleTextStyle: text.applyFont(
-          defaultTheme.textTheme.titleLarge?.copyWith(
-            color: color.white,
-            fontWeight: FontWeight.w300,
-          ),
-        ),
+        backgroundColor: color.scheme.primary,
+        foregroundColor: color.scheme.onPrimary,
+        titleTextStyle: text.appBarTitle,
       ),
       sliderTheme: SliderThemeData(
-        thumbColor: color.secondary,
-        activeTrackColor: color.secondary,
+        thumbColor: color.scheme.secondary,
+        activeTrackColor: color.scheme.secondary,
         inactiveTrackColor: color.lightGray,
       ),
-      dividerTheme: DividerThemeData(color: color.gray),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: color.scheme.surfaceContainer,
+        selectedItemColor: defaultTheme.colorScheme.primary,
+      ),
+      listTileTheme: ListTileThemeData(
+        selectedColor: defaultTheme.colorScheme.primary,
+      ),
+      dividerTheme: DividerThemeData(color: color.scheme.outlineVariant),
     );
   }
 }

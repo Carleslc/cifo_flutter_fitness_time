@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'screens/home_screen.dart';
@@ -21,8 +22,13 @@ class FitnessTimeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: title,
-      theme: AppStyles.theme(context),
       home: const HomeScreen(),
+      // Inicialitza el tema
+      theme: AppStyles.theme(context),
+      // Localització d'idioma
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      supportedLocales: const [Locale('ca')],
+      locale: const Locale('ca'),
     );
   }
 }

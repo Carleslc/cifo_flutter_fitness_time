@@ -5,6 +5,9 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 import '../styles/app_styles.dart';
 
+///
+/// Indicador circular de progrés de l'objectiu
+///
 class GoalProgressIndicator extends StatelessWidget {
   /// Nom de l'objectiu
   final String name;
@@ -19,7 +22,7 @@ class GoalProgressIndicator extends StatelessWidget {
     super.key,
     required this.name,
     required this.percent,
-    this.radius = 55,
+    this.radius = 50,
   });
 
   /// Percentatge del progrés entre 0 i 100
@@ -32,14 +35,16 @@ class GoalProgressIndicator extends StatelessWidget {
       radius: radius,
       lineWidth: 10,
       progressColor: AppStyles.color.accent,
-      backgroundColor: AppStyles.color.lightGray,
       circularStrokeCap: CircularStrokeCap.round,
+      // backgroundColor: AppStyles.color.lightGray, // Alternativa
       center: Text(
         '${progress.round()}%',
         style: AppStyles.text.titleMedium,
       ),
       footer: Padding(
-        padding: const EdgeInsets.only(top: 4),
+        // Disseny: 0
+        // Alternativa: 4, per que el texte quedi millor una mica més separat
+        padding: const EdgeInsets.only(top: 0),
         child: Text(name, style: AppStyles.text.normal),
       ),
     );
