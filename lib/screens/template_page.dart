@@ -14,7 +14,7 @@ class TemplatePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 64),
+          Icon(icon, size: 64, color: AppStyles.color.gray),
           Text('Pròximament', style: AppStyles.text.medium),
         ],
       ),
