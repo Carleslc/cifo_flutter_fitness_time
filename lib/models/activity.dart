@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
 import '../utils/date_utils.dart';
-import '../widgets/activity_card.dart';
 import 'distance.dart';
 
 abstract class Activity implements Comparable<Activity> {
@@ -20,9 +17,6 @@ abstract class Activity implements Comparable<Activity> {
     required this.duration,
   });
 
-  /// Widget que representa l'activitat
-  Widget toWidget();
-
   @override
   int compareTo(Activity other) => -date.compareTo(other.date); // - descendent
 }
@@ -36,11 +30,6 @@ class RunningActivity extends Activity {
     required super.duration,
     required this.distance,
   }) : super(name: 'Running');
-
-  @override
-  RunningActivityCard toWidget() {
-    return RunningActivityCard(activity: this);
-  }
 }
 
 List<Activity> templateActivities() {

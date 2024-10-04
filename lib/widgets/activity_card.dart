@@ -13,7 +13,7 @@ class ActivityCard extends StatelessWidget {
   final Activity activity;
 
   /// Icona de l'activitat
-  final Icon icon;
+  final Icon? icon;
 
   /// Widget del valor de l'activitat
   final Widget? value;
@@ -21,7 +21,7 @@ class ActivityCard extends StatelessWidget {
   const ActivityCard({
     super.key,
     required this.activity,
-    required this.icon,
+    this.icon,
     this.value,
   });
 
@@ -33,7 +33,8 @@ class ActivityCard extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Row(
           children: [
-            icon,
+            if (icon != null)
+              icon!,
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -89,4 +90,12 @@ class RunningActivityCard extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Mapeja una activitat al seu widget corresponent
+Widget getActivityCard(Activity activity) {
+  if (activity is RunningActivity) {
+    return RunningActivityCard(activity: activity);
+  }
+  return ActivityCard(activity: activity);
 }

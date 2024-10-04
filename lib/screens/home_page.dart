@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/activity.dart';
 import '../models/user.dart';
 import '../styles/app_styles.dart';
+import '../widgets/activity_card.dart';
 import '../widgets/goal_indicator.dart';
 import '../widgets/text_link.dart';
 
@@ -50,7 +51,7 @@ class HomePage extends StatelessWidget {
             ),
             const Divider(),
             for (Activity activity in user.latestActivities(3))
-              activity.toWidget(),
+              getActivityCard(activity),
             const SizedBox(height: 30),
             // Objectiu
             const Center(
