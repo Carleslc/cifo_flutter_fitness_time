@@ -21,28 +21,57 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   static const int _initialPageIndex = 0;
 
-  final User user = templateUser;
+  /// Pàgines de la pantalla principal
+  static const _pages = <PageScreen>[
+    PageScreen.inici,
+    PageScreen.cercar,
+    PageScreen.botiga,
+  ];
+
+  /// Persona per defecte
+  final User _user = templateUser;
 
   /// Controlador per canviar de pàgina amb [PageView] i [BottomNavigationBar]
   final PageController _pageController =
       PageController(initialPage: _initialPageIndex, keepPage: true);
 
-  /// Vista actual
+  /// Pàgina actual
   int _currentPageIndex = _initialPageIndex;
 
-  void _changeView(int pageIndex) {
-    setState(() {
-      _currentPageIndex = pageIndex;
-    });
+  void _onDrawerSelect(
+    BuildContext context,
+    void Function(BuildContext)? navigate,
+  ) {
+    // Tanca el menú
+    Navigator.of(context).pop();
+    // Navega a la pantalla seleccionada
+    navigate?.call(context);
   }
 
   void _navigateToProfile(BuildContext context) {
+    // Canvia a la pantalla del perfil
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ProfileScreen(user: user),
+        builder: (context) => ProfileScreen(user: _user),
       ),
     );
+  }
+
+  void _navigateToPage(int pageIndex) {
+    // Canvia a la pàgina seleccionada
+    _pageController.animateToPage(
+      pageIndex,
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.ease,
+    );
+    _pageChanged(pageIndex);
+  }
+
+  void _pageChanged(int pageIndex) {
+    setState(() {
+      _currentPageIndex = pageIndex;
+    });
   }
 
   @override
@@ -55,63 +84,45 @@ class _HomeScreenState extends State<HomeScreen> {
           // Icona del perfil
           IconButton(
             tooltip: ProfileScreen.title,
-            icon: UserAvatar(imageUrl: user.imageUrl),
+            icon: UserAvatar(imageUrl: _user.imageUrl),
             onPressed: () => _navigateToProfile(context),
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: _changeView,
-          children: [
-            HomePage(user: user),
-            const TemplatePage(icon: Icons.search),
-            const TemplatePage(icon: Icons.shopping_cart),
-          ],
-        ),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: _pageChanged,
+        children: [
+          // Pàgina principal (Inici)
+          HomePage(user: _user),
+          // Altres pàgines (Cercar, Botiga)
+          ..._pages.sublist(1).map((page) => TemplatePage(icon: page.icon)),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Inici',
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: 'Cercar',
-            icon: Icon(Icons.search),
-          ),
-          BottomNavigationBarItem(
-            label: 'Botiga',
-            icon: Icon(Icons.shopping_cart),
-          ),
+        items: [
+          for (PageScreen page in _pages)
+            BottomNavigationBarItem(
+              icon: Icon(page.icon),
+              label: page.label,
+            ),
         ],
-        selectedItemColor: AppStyles.color.darkAccent,
         currentIndex: _currentPageIndex,
-        onTap: (int pageIndex) {
-          // Canvia a la vista seleccionada
-          _pageController.animateToPage(
-            pageIndex,
-            duration: const Duration(milliseconds: 250),
-            curve: Curves.ease,
-          );
-          _changeView(pageIndex);
-        },
+        onTap: _navigateToPage,
       ),
       // Menú lateral
       drawer: Drawer(
-        child: Column(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            SizedBox(
-              width: double.infinity, // expandeix en amplada
-              child: DrawerHeader(
-                decoration: BoxDecoration(color: AppStyles.color.primary),
-                child: Text(
-                  FitnessTimeApp.title,
-                  style: AppStyles.text.big.copyWith(
-                    color: AppStyles.color.white,
-                  ),
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: Text(
+                FitnessTimeApp.title,
+                style: AppStyles.text.big.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
             ),
@@ -119,15 +130,36 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(Icons.person_2),
               title: const Text(ProfileScreen.title),
               onTap: () {
-                // Tanca el menú
-                Navigator.of(context).pop();
                 // Canvia a la pantalla de perfil
-                _navigateToProfile(context);
+                _onDrawerSelect(context, _navigateToProfile);
               },
             ),
+            for (var (int pageIndex, PageScreen page) in _pages.indexed)
+              ListTile(
+                leading: Icon(page.icon),
+                title: Text(page.label),
+                selected: pageIndex == _currentPageIndex,
+                onTap: () {
+                  // Canvia a la pàgina corresponent
+                  _onDrawerSelect(context, (_) => _navigateToPage(pageIndex));
+                },
+              ),
           ],
         ),
       ),
     );
   }
+}
+
+/// Pàgina per al PageView
+final class PageScreen {
+  static const inici = PageScreen(label: 'Inici', icon: Icons.home);
+  static const cercar = PageScreen(label: 'Cercar', icon: Icons.search);
+  static const botiga = PageScreen(label: 'Botiga', icon: Icons.shopping_cart);
+
+  final String label;
+
+  final IconData icon;
+
+  const PageScreen({required this.label, required this.icon});
 }
