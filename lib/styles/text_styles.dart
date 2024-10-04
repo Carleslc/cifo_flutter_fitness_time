@@ -64,7 +64,7 @@ final class TextStyles {
     // El disseny pel títol de l'AppBar utilitza la mida del títol per defecte
     // (defaultTheme.titleLarge.fontSize: 22)
     // Com s'ha definit un tema que sobrescriu la mida de titleLarge (24)
-    // hem de definir l'estil a partir del tema per defecte i no el personalitzat
+    // hem de definir l'estil a partir del tema per defecte i no el personalitzat.
     // Com exemple s'utilitza també una variant de la font més fina
     appBarTitle = textStyle(
       color: AppStyles.color.scheme.onPrimary,

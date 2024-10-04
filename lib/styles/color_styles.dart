@@ -46,8 +46,8 @@ final class ColorStyles {
   final Color overlay = Colors.transparent;
 
   /// Color dels títols
-  // Alternativa: Colors.black45 (més clar)
-  final Color titleTextColor = Colors.black54;
+  // Alternativa: Colors.black54 (més fosc)
+  final Color titleTextColor = Colors.black45;
 
   /// Color dels textos
   // Alternativa: Colors.black87

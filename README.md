@@ -151,7 +151,7 @@ Per últim he fet que l'enllaç "Més detalls" sigui clickable i s'obri una pàg
 
 Les principals dificultats que he trobat han sigut el modelat i formateig de les dades per que quedin igual que al disseny sense possar els textos a mà i la creació de les classes per organitzar els estils i crear el tema, així com cuadrar els colors i la font amb el disseny, tenint en compte que els colors visualment canvien una mica segons la pantalla i segons el dispositiu on s'executi. El widget més difícil ha sigut `ActivityCard`, que involucra l'ús de diverses classes com `Activity` i `RunningActivity` i ha de formatejar la data, hora i distància.
 
-He utilitzat l'IDE _Visual Studio Code_ durant tot el desenvolupament, utilitzant principalment un mòvil físic Pixel 8 amb Android 14 (API 35). També he provat l'aplicació amb un emulador amb Android 10 (API 29). L'aplicació també es pot obrir amb l'IDE web [Project IDX](https://idx.google.com/).
+He utilitzat l'IDE _Visual Studio Code_ durant pràcticament tot el desenvolupament, utilitzant principalment un mòvil físic Pixel 8 amb Android 14 (API 35). També he provat l'aplicació amb un emulador amb Android 10 (API 29) i mitjançant l'IDE web [Project IDX](https://idx.google.com/).
 
 ## Imatges
 
