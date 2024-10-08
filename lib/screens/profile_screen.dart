@@ -81,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
                     value: totalDuration.format(),
                   ),
                   CardAttribute(
-                    icon: Icons.location_pin,
+                    icon: Icons.place,
                     name: 'Km',
                     value: totalDistance.format(withSuffix: false),
                   ),

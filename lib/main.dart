@@ -5,12 +5,14 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'screens/home_screen.dart';
 import 'styles/app_styles.dart';
 
-void main() {
+void main() async {
   // Es localitza DateFormat abans de carregar l'app,
   // sino dóna error al formatejar les dates de la pantalla inicial
-  initializeDateFormatting().then((_) {
-    runApp(const FitnessTimeApp());
-  });
+  // https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
+  await initializeDateFormatting();
+
+  // Carrega l'aplicació
+  runApp(const FitnessTimeApp());
 }
 
 class FitnessTimeApp extends StatelessWidget {

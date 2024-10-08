@@ -187,7 +187,7 @@ Relacionats amb Flutter:
 - [`NumberFormat` (intl)](https://pub.dev/documentation/intl/latest/intl/NumberFormat-class.html)
 - [Internationalization](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization)
 
-### Llibreries externes
+## Llibreries externes
 
 - [google_fonts](https://pub.dev/packages/google_fonts)
 - [percent_indicator](https://pub.dev/packages/percent_indicator)

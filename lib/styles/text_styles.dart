@@ -31,6 +31,14 @@ final class TextStyles {
   /// Textos de mida petita
   final small = textStyle(fontSize: 12);
 
+  /// Links (p.e. "Més detalls")
+  final link = textStyle(
+    fontSize: 14,
+    color: AppStyles.color.accent,
+    decoration: TextDecoration.underline,
+    decorationStyle: TextDecorationStyle.solid,
+  );
+
   /// Títol de la AppBar
   late final TextStyle appBarTitle;
 
@@ -81,6 +89,8 @@ final class TextStyles {
     FontWeight? fontWeight,
     FontStyle? fontStyle,
     Color? color,
+    TextDecoration? decoration,
+    TextDecorationStyle? decorationStyle,
     // false per defecte ja que el disseny de l'aplicació només
     // aplica el fontFamily i no utilitza les seves variants
     bool applyFontVariant = false,
@@ -89,8 +99,10 @@ final class TextStyles {
       fontSize: fontSize,
       fontWeight: fontWeight,
       fontStyle: fontStyle,
-      color: color,
       fontFamily: fontFamily,
+      color: color,
+      decoration: decoration,
+      decorationStyle: decorationStyle,
     );
     return applyFontVariant ? textStyle.withAppFont : textStyle;
   }

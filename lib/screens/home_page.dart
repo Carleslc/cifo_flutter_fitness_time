@@ -37,11 +37,9 @@ class HomePage extends StatelessWidget {
               ),
             ),
             // Enllaç
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextLink(text: 'Més detalls', url: drinkWaterUrl),
-              ],
+            const Align(
+              alignment: Alignment.centerRight,
+              child: TextLink(text: 'Més detalls', url: drinkWaterUrl),
             ),
             const SizedBox(height: 30),
             // Activitats
