@@ -103,7 +103,7 @@ S'ha afegit una carpeta `utils` per utilitats i extensions que ajudin al formate
 
 ## Notes del desenvolupament
 
-Per començar l'aplicació he llegit el pdf [Activitat d'avaluació 1.3 - Crea una pantalla a partir del disseny](<./Activitat d'avaluació 1.3 - Crea una pantalla a partir del disseny.pdf>) per conèixer alguns dels recursos utilitzats (colors, icones, font, imatges...) així com alguns dels widgets que s'han d'utilitzar.
+Per començar l'aplicació he llegit el pdf [Activitat d'avaluació 1.3 - Crea una pantalla a partir del disseny](<./Activitat davaluació 1.3 - Crea una pantalla a partir del disseny.pdf>) per conèixer alguns dels recursos utilitzats (colors, icones, font, imatges...) així com alguns dels widgets que s'han d'utilitzar.
 
 S'han definit els estils a la classe estàtica `AppStyles` (`styles/app_styles.dart`). La classe és `abstract` per que no pugui ser instanciada (l'aternativa seria utilitzar un constructor privat `const AppStyles._()`) i `final` per que no pugui ser heredada (no tindria sentit ja que una subclasse a Dart no té accéss als atributs estàtics de la classe pare).
 
